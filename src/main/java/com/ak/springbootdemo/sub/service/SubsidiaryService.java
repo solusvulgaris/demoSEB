@@ -1,10 +1,10 @@
-package com.ak.springbootdemo.seb.service;
+package com.ak.springbootdemo.sub.service;
 
-import com.ak.springbootdemo.seb.data.Subsidiary;
-import com.ak.springbootdemo.seb.data.SubsidiaryRepository;
-import com.ak.springbootdemo.seb.exceptions.SubsidiaryControllerException;
-import com.ak.springbootdemo.seb.exceptions.SubsidiaryServiceException;
-import com.ak.springbootdemo.seb.util.JSONSubsidiary;
+import com.ak.springbootdemo.sub.data.Subsidiary;
+import com.ak.springbootdemo.sub.data.SubsidiaryRepository;
+import com.ak.springbootdemo.sub.exceptions.SubsidiaryControllerException;
+import com.ak.springbootdemo.sub.exceptions.SubsidiaryServiceException;
+import com.ak.springbootdemo.sub.util.JSONSubsidiary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

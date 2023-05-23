@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ak.springbootdemo</groupId>
-	<artifactId>seb-demo-app</artifactId>
+	<artifactId>sub-demo-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sebdemoapp</name>
-	<description>SEB Demo Application</description>
+	<name>subdemoapp</name>
+	<description>Subsidiaries Demo Application</description>
 	<properties>
 		<java.version>11</java.version>
 		<maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>

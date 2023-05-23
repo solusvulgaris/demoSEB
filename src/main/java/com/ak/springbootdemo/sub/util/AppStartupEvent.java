@@ -1,7 +1,7 @@
-package com.ak.springbootdemo.seb.util;
+package com.ak.springbootdemo.sub.util;
 
-import com.ak.springbootdemo.seb.data.Subsidiary;
-import com.ak.springbootdemo.seb.data.SubsidiaryRepository;
+import com.ak.springbootdemo.sub.data.Subsidiary;
+import com.ak.springbootdemo.sub.data.SubsidiaryRepository;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;

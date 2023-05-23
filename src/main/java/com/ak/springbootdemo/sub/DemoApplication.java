@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb;
+package com.ak.springbootdemo.sub;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

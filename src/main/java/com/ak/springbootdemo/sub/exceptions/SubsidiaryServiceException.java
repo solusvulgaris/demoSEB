@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb.exceptions;
+package com.ak.springbootdemo.sub.exceptions;
 
 /**
  * Subsidiary Service Exception

@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb.exceptions;
+package com.ak.springbootdemo.sub.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

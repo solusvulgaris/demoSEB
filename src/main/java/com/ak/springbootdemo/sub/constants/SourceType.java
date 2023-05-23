@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb.constants;
+package com.ak.springbootdemo.sub.constants;
 
 import lombok.Getter;
 

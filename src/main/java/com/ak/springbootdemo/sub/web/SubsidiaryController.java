@@ -1,9 +1,9 @@
-package com.ak.springbootdemo.seb.web;
+package com.ak.springbootdemo.sub.web;
 
-import com.ak.springbootdemo.seb.constants.SourceType;
-import com.ak.springbootdemo.seb.exceptions.SubsidiaryControllerException;
-import com.ak.springbootdemo.seb.service.SubsidiaryService;
-import com.ak.springbootdemo.seb.util.JSONSubsidiary;
+import com.ak.springbootdemo.sub.constants.SourceType;
+import com.ak.springbootdemo.sub.exceptions.SubsidiaryControllerException;
+import com.ak.springbootdemo.sub.service.SubsidiaryService;
+import com.ak.springbootdemo.sub.util.JSONSubsidiary;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

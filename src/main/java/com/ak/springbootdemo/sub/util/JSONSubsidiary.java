@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb.util;
+package com.ak.springbootdemo.sub.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

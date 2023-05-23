@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb.config;
+package com.ak.springbootdemo.sub.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,8 @@
-package com.ak.springbootdemo.seb.service;
+package com.ak.springbootdemo.sub.service;
 
-import com.ak.springbootdemo.seb.data.Subsidiary;
-import com.ak.springbootdemo.seb.data.SubsidiaryRepository;
-import com.ak.springbootdemo.seb.exceptions.SubsidiaryServiceException;
+import com.ak.springbootdemo.sub.data.Subsidiary;
+import com.ak.springbootdemo.sub.data.SubsidiaryRepository;
+import com.ak.springbootdemo.sub.exceptions.SubsidiaryServiceException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -48,7 +48,8 @@ class SubsidiaryServiceTest {
     @MethodSource("createSubsidiaryInputParams")
     @DisplayName("createSubsidiary() test cases")
     void createSubsidiaryTest(String testCaseDescription, boolean validSubsidiary) {
-        Optional<Subsidiary> optionalSubsidiary = validSubsidiary ? Optional.of(validSubsidiaryExample) : Optional.empty();
+        Optional<Subsidiary> optionalSubsidiary =
+                validSubsidiary ? Optional.of(validSubsidiaryExample) : Optional.empty();
         when(subsidiaryRepository.findByInnerCode(anyString())).thenReturn(optionalSubsidiary);
         Assertions.assertEquals(updatedSubsidiaryExample, subsidiaryService.saveSubsidiary(
                 updatedSubsidiaryExample.getInnerCode(),

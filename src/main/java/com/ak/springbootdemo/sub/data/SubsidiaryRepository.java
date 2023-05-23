@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb.data;
+package com.ak.springbootdemo.sub.data;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

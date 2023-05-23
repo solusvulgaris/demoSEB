@@ -1,4 +1,4 @@
-package com.ak.springbootdemo.seb.data;
+package com.ak.springbootdemo.sub.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
