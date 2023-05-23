@@ -88,6 +88,7 @@ public class Subsidiary {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
+
     @Override
     public String toString() {
         return "Subsidiary{" +
@@ -104,9 +105,11 @@ public class Subsidiary {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subsidiary that = (Subsidiary) o;
-        return getId() == that.getId() && getInnerCode().equals(that.getInnerCode()) && Objects.equals(getAddress(),
-                that.getAddress()) && Objects.equals(getName(), that.getName()) && Objects.equals(getPhoneNumber(),
-                that.getPhoneNumber());
+        return getId() == that.getId()
+                && getInnerCode().equals(that.getInnerCode())
+                && Objects.equals(getAddress(), that.getAddress())
+                && Objects.equals(getName(), that.getName())
+                && Objects.equals(getPhoneNumber(), that.getPhoneNumber());
     }
 
     @Override
