@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Subsidiary Controller
@@ -22,6 +24,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/subsidiaries")
 public class SubsidiaryController {
+    private static final Logger logger = Logger.getLogger(SubsidiaryController.class.getName());
+
     private final SubsidiaryService subsidiaryService;
 
     public SubsidiaryController(SubsidiaryService subsidiaryService) {
@@ -70,7 +74,7 @@ public class SubsidiaryController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({SubsidiaryControllerException.class,})
     public String return400(SubsidiaryControllerException ex) {
-        //TODO: log exception
+        logger.log(Level.WARNING, ex.getMessage());
         return ex.getMessage();
     }
 }
