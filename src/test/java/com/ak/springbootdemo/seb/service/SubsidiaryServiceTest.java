@@ -50,7 +50,7 @@ class SubsidiaryServiceTest {
     void createSubsidiaryTest(String testCaseDescription, boolean validSubsidiary) {
         Optional<Subsidiary> optionalSubsidiary = validSubsidiary ? Optional.of(validSubsidiaryExample) : Optional.empty();
         when(subsidiaryRepository.findByInnerCode(anyString())).thenReturn(optionalSubsidiary);
-        Assertions.assertEquals(updatedSubsidiaryExample, subsidiaryService.updateOrSaveSubsidiaryInDB(
+        Assertions.assertEquals(updatedSubsidiaryExample, subsidiaryService.saveSubsidiary(
                 updatedSubsidiaryExample.getInnerCode(),
                 updatedSubsidiaryExample.getAddress(),
                 updatedSubsidiaryExample.getName(),

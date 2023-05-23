@@ -2,10 +2,13 @@ package com.ak.springbootdemo.seb.service;
 
 import com.ak.springbootdemo.seb.data.Subsidiary;
 import com.ak.springbootdemo.seb.data.SubsidiaryRepository;
+import com.ak.springbootdemo.seb.exceptions.SubsidiaryControllerException;
 import com.ak.springbootdemo.seb.exceptions.SubsidiaryServiceException;
+import com.ak.springbootdemo.seb.util.JSONSubsidiary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +55,7 @@ public class SubsidiaryService {
      * @param phoneNumber subsidiary phoneNumber
      * @return Created or Updated Subsidiary entity
      */
-    protected Subsidiary createSubsidiary(String innerCode, String address, String name, String phoneNumber) {
+    protected Subsidiary saveSubsidiary(String innerCode, String address, String name, String phoneNumber) {
         Optional<Subsidiary> optionalSub = subsidiaryRepository.findByInnerCode(innerCode);
         optionalSub.ifPresent(sub -> sub.update(innerCode, address, name, phoneNumber));
         return optionalSub.orElse(addSubsidiary(new Subsidiary(innerCode, address, name, phoneNumber)));
@@ -72,4 +75,25 @@ public class SubsidiaryService {
         return subsidiary;
     }
 
+    /**
+     * Read and save Subsidiary entities from an external JSON file into DB
+     *
+     * @return subsidiaries list from json file
+     */
+    public List<JSONSubsidiary> saveSubsidiariesFromJSONFile() throws SubsidiaryControllerException {
+        List<JSONSubsidiary> jsonSubsidiaryList;
+        try {
+            jsonSubsidiaryList = JSONSubsidiary.read();
+            jsonSubsidiaryList.forEach(importedSubsidiary ->
+                    saveSubsidiary(
+                            importedSubsidiary.getInnerCode(),
+                            importedSubsidiary.getAddress(),
+                            importedSubsidiary.getName(),
+                            importedSubsidiary.getPhoneNumber()));
+
+        } catch (IOException e) {
+            throw new SubsidiaryControllerException("Unable get subsidiaries list from json file.");
+        }
+        return jsonSubsidiaryList;
+    }
 }
