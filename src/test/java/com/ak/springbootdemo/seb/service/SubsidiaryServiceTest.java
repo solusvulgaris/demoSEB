@@ -39,21 +39,22 @@ class SubsidiaryServiceTest {
 
     public static Stream<Arguments> createSubsidiaryInputParams() {
         return Stream.of(
-                Arguments.of(Optional.of(validSubsidiaryExample)),
-                Arguments.of(Optional.empty())
+                Arguments.of("Subsidiary exist - update case", true ),
+                Arguments.of("No existing Subsidiary - create new case", false)
         );
     }
 
     @ParameterizedTest
     @MethodSource("createSubsidiaryInputParams")
     @DisplayName("createSubsidiary() test cases")
-    void createSubsidiaryTest(Optional<Subsidiary> subsidiary) {
-        when(subsidiaryRepository.findByInnerCode(anyString())).thenReturn(subsidiary);
-        Assertions.assertEquals(updatedSubsidiaryExample, subsidiaryService.createSubsidiary(
+    void createSubsidiaryTest(String testCaseDescription, boolean validSubsidiary) {
+        Optional<Subsidiary> optionalSubsidiary = validSubsidiary ? Optional.of(validSubsidiaryExample) : Optional.empty();
+        when(subsidiaryRepository.findByInnerCode(anyString())).thenReturn(optionalSubsidiary);
+        Assertions.assertEquals(updatedSubsidiaryExample, subsidiaryService.updateOrSaveSubsidiaryInDB(
                 updatedSubsidiaryExample.getInnerCode(),
                 updatedSubsidiaryExample.getAddress(),
                 updatedSubsidiaryExample.getName(),
-                updatedSubsidiaryExample.getPhoneNumber()));
+                updatedSubsidiaryExample.getPhoneNumber()), testCaseDescription);
     }
 
     @Test
