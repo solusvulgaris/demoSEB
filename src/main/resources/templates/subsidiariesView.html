@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1>Welcome to the Subsidiaries List Page!</h1>
+<p th:text="${typeString}!=null?'Subsidiaries loaded from th ' + ${typeString} + ' source file:' : ''"/>
 <table>
   <tr>
     <td>Code</td>

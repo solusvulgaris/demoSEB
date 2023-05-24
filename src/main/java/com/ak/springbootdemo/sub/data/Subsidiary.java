@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import java.util.Objects;
 
 /**
- * Subsidiary Entity
+ * A persistence Subsidiary Entity
+ * lightweight class persisted to a SUBSIDIARY table in a DB
  */
 @Entity
 @Table(name = "SUBSIDIARY")

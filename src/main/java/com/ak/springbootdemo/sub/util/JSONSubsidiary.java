@@ -12,6 +12,7 @@ import static com.fasterxml.jackson.annotation.PropertyAccessor.FIELD;
 
 /**
  * Utility class for reading Subsidiaries from JSON file
+ * represents DTO - Data Transfer Object - to represent Subsidiary entity based on min essential repesentation
  */
 public class JSONSubsidiary {
     static final String JSON_FILE = "subsidiary.json";
