@@ -4,7 +4,6 @@ import com.ak.springbootdemo.sub.constants.SourceType;
 import com.ak.springbootdemo.sub.exceptions.SubsidiaryControllerException;
 import com.ak.springbootdemo.sub.service.SubsidiaryService;
 import com.ak.springbootdemo.sub.util.JSONSubsidiary;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,7 +65,6 @@ public class SubsidiaryController {
      * @param ex exception
      * @return Error message String.
      */
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({SubsidiaryControllerException.class,})
     public String return400(SubsidiaryControllerException ex) {
         logger.log(Level.WARNING, ex.getMessage());
