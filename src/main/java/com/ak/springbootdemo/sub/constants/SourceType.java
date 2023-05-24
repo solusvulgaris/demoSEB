@@ -11,7 +11,8 @@ import java.util.Optional;
 public enum SourceType {
     DATABASE("db"),
     JSON("json"),
-    XML("xml");
+    XML("xml"),
+    UNDEFINED("undefined");
 
     @Getter
     private final String sourceTypeValue;
