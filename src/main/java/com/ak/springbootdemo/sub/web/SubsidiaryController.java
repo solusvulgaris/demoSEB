@@ -3,10 +3,13 @@ package com.ak.springbootdemo.sub.web;
 import com.ak.springbootdemo.sub.constants.SourceType;
 import com.ak.springbootdemo.sub.exceptions.SubsidiaryControllerException;
 import com.ak.springbootdemo.sub.service.SubsidiaryService;
-import com.ak.springbootdemo.sub.util.JSONSubsidiary;
+import com.ak.springbootdemo.sub.util.SubsidiaryDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -44,7 +47,7 @@ public class SubsidiaryController {
         } else {
             switch (SourceType.getSourceType(typeString).orElse(SourceType.UNDEFINED)) {
                 case JSON:
-                    List<JSONSubsidiary> jsonSubsidiaryList = this.subsidiaryService.saveSubsidiariesFromJSONFile();
+                    List<SubsidiaryDTO> jsonSubsidiaryList = this.subsidiaryService.saveSubsidiariesFromJSONFile();
                     model.addAttribute("subsidiariesList", jsonSubsidiaryList);
                     break;
                 case XML:

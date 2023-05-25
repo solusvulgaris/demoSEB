@@ -4,20 +4,27 @@ import com.ak.springbootdemo.sub.data.Subsidiary;
 import com.ak.springbootdemo.sub.data.SubsidiaryRepository;
 import com.ak.springbootdemo.sub.exceptions.SubsidiaryControllerException;
 import com.ak.springbootdemo.sub.exceptions.SubsidiaryServiceException;
-import com.ak.springbootdemo.sub.util.JSONSubsidiary;
+import com.ak.springbootdemo.sub.util.SubsidiaryDTO;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
+import static com.fasterxml.jackson.annotation.PropertyAccessor.FIELD;
 
 /**
  * Subsidiary Service
  */
 @Service
 public class SubsidiaryService {
+    static final String JSON_FILE = "subsidiary.json";
     private final SubsidiaryRepository subsidiaryRepository;
 
     @Autowired
@@ -47,6 +54,15 @@ public class SubsidiaryService {
     }
 
     /**
+     * Get Subsidiary by InnerCode from DB.
+     *
+     * @return Subsidiary if exist or empty
+     */
+    public Optional<Subsidiary> getSubsidiariesByInnerCode(String innerCode) {
+        return this.subsidiaryRepository.findByInnerCode(innerCode);
+    }
+
+    /**
      * Create or Update Subsidiary entity
      *
      * @param innerCode   unique inner code of the subsidiary
@@ -55,7 +71,7 @@ public class SubsidiaryService {
      * @param phoneNumber subsidiary phoneNumber
      * @return Created or Updated Subsidiary entity
      */
-    protected Subsidiary saveSubsidiary(String innerCode, String address, String name, String phoneNumber) {
+    public Subsidiary saveSubsidiary(String innerCode, String address, String name, String phoneNumber) {
         Optional<Subsidiary> optionalSub = subsidiaryRepository.findByInnerCode(innerCode);
         optionalSub.ifPresent(sub -> sub.update(innerCode, address, name, phoneNumber));
         return optionalSub.orElse(addSubsidiary(new Subsidiary(innerCode, address, name, phoneNumber)));
@@ -80,10 +96,12 @@ public class SubsidiaryService {
      *
      * @return subsidiaries list from json file
      */
-    public List<JSONSubsidiary> saveSubsidiariesFromJSONFile() throws SubsidiaryControllerException {
-        List<JSONSubsidiary> jsonSubsidiaryList;
-        try {
-            jsonSubsidiaryList = JSONSubsidiary.read();
+    public List<SubsidiaryDTO> saveSubsidiariesFromJSONFile() throws SubsidiaryControllerException {
+        List<SubsidiaryDTO> jsonSubsidiaryList;
+        try (final InputStream resourceAsStream = SubsidiaryService.class.getClassLoader().getResourceAsStream(JSON_FILE)) {
+            jsonSubsidiaryList = new ObjectMapper().setVisibility(FIELD, ANY)
+                    .readValue(resourceAsStream, new TypeReference<>() {
+                    });
             jsonSubsidiaryList.forEach(importedSubsidiary ->
                     saveSubsidiary(
                             importedSubsidiary.getInnerCode(),
